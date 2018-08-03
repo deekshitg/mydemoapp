@@ -1,0 +1,31 @@
+<ion-header>
+
+  <ion-navbar color="appColor" text-center>
+    <ion-title>MyFuelPortal</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-grid>
+        <ion-row>
+          <ion-col text-center>
+              <h1>Welcome to MyFuelPortal</h1>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col text-center>
+              <button ion-button color="appColor" (click)="openPortalSignIn('home')" icon-right>Log In <ion-icon name="arrow-forward"></ion-icon></button>
+              <div><span [hidden]="showLoad"><ion-spinner></ion-spinner></span></div>
+              
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+</ion-content>
+<ion-footer text-center>
+
+    <a ion-button text-center clear (click)="openPortalSignIn('privacy')" color="primary">Privacy Policy</a>
+    <p><strong>Copyright © 2018 MyFuelPortal.</strong> All rights reserved.</p>
+  
+</ion-footer>

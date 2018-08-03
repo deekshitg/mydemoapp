@@ -1,0 +1,34 @@
+<ion-header>
+
+    <ion-navbar color="appColor" text-center>
+      <ion-title>MyFuelPortal</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding>
+      <ion-grid>
+          <ion-row>
+            <ion-col text-center>
+                <h1>Network Connection Error</h1>
+                <p>The internet connection appears to be offline at the moment. Please check your network connection and try again once the connection has been restored.</p>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col text-center>
+                <button ion-button color="danger" (click)="reloadPage()" icon-first><ion-icon name="refresh"></ion-icon> Try Again</button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+  </ion-content>
+  <ion-footer text-center>
+  
+      <a ion-button text-center clear (click)="reloadPage('policy')" color="primary">Privacy Policy</a>
+      <p><strong>Copyright © 2018 MyFuelPortal.</strong> All rights reserved.</p>
+    
+  </ion-footer>
+  
+
+
+
