@@ -65,6 +65,7 @@ var HomePage = /** @class */ (function () {
         this.network = network;
         this.plt = plt;
         this.showLoad = true;
+        this.url = "https://demo.myfuelportal.com";
     }
     HomePage.prototype.openPortalSignIn = function (urlstring) {
         var _this = this;
@@ -75,6 +76,9 @@ var HomePage = /** @class */ (function () {
         else if (urlstring == 'privacy') {
             this.webref = this.iab.create('https://demo.myfuelportal.com/Account/Privacy', '_blank', { location: 'no', hidden: 'yes', toolbar: 'no', hidespinner: 'yes' });
         }
+        this.webref.on('loadstart').subscribe(function (event) {
+            _this.url = event.url;
+        });
         this.webref.on('loadstop').subscribe(function () {
             _this.showLoad = true;
             _this.webref.show();
@@ -84,7 +88,7 @@ var HomePage = /** @class */ (function () {
                 if (_this.network.type === 'none') {
                     _this.webref.close();
                     alert("Looks like you are not online");
-                    _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__error_error__["a" /* ErrorPage */], event.url);
+                    _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__error_error__["a" /* ErrorPage */], _this.url);
                 }
             });
         }
@@ -101,7 +105,7 @@ var HomePage = /** @class */ (function () {
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\Users\gsaid\Desktop\myfuelportal\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar color="appColor" text-center>\n    <ion-title>MyFuelPortal</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n    <ion-grid>\n        <ion-row>\n          <ion-col text-center>\n              <h1>Welcome to MyFuelPortal</h1>\n          </ion-col>\n        </ion-row>\n        <ion-row>\n          <ion-col text-center>\n              <button ion-button color="appColor" (click)="openPortalSignIn(\'home\')" icon-right>Log In <ion-icon name="arrow-forward"></ion-icon></button>\n              <div><span [hidden]="showLoad"><ion-spinner></ion-spinner></span></div>\n              \n          </ion-col>\n        </ion-row>\n      </ion-grid>\n</ion-content>\n<ion-footer text-center>\n\n    <a ion-button text-center clear (click)="openPortalSignIn(\'privacy\')" color="primary">Privacy Policy</a>\n    <p><strong>Copyright © 2018 MyFuelPortal.</strong> All rights reserved.</p>\n  \n</ion-footer>'/*ion-inline-end:"C:\Users\gsaid\Desktop\myfuelportal\src\pages\home\home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/Users/duth/Desktop/Ionic Apps/mydemoapp/src/pages/home/home.html"*/'<ion-header>\n\n  <ion-navbar color="appColor" text-center>\n    <ion-title>MyFuelPortal</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n    <ion-grid>\n        <ion-row>\n          <ion-col text-center>\n              <h1>Welcome to MyFuelPortal</h1>\n          </ion-col>\n        </ion-row>\n        <ion-row>\n          <ion-col text-center>\n              <button ion-button color="appColor" (click)="openPortalSignIn(\'home\')" icon-right>Log In <ion-icon name="arrow-forward"></ion-icon></button>\n              <div><span [hidden]="showLoad"><ion-spinner></ion-spinner></span></div>\n              \n          </ion-col>\n        </ion-row>\n      </ion-grid>\n</ion-content>\n<ion-footer text-center>\n\n    <a ion-button text-center clear (click)="openPortalSignIn(\'privacy\')" color="primary">Privacy Policy</a>\n    <p><strong>Copyright © 2018 MyFuelPortal.</strong> All rights reserved.</p>\n  \n</ion-footer>'/*ion-inline-end:"/Users/duth/Desktop/Ionic Apps/mydemoapp/src/pages/home/home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__["a" /* InAppBrowser */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_network__["a" /* Network */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Platform */]])
     ], HomePage);
@@ -144,7 +148,7 @@ var ErrorPage = /** @class */ (function () {
     ErrorPage_1 = ErrorPage;
     ErrorPage.prototype.reloadPage = function (urlstring) {
         var _this = this;
-        var url = this.navParams.data;
+        var url = "https://demo.myfuelportal.com/";
         if (urlstring == 'policy') {
             this.webref = this.iab.create('https://demo.myfuelportal.com/Account/Privacy', '_blank', { location: 'no', hidden: 'yes', toolbar: 'no', hidespinner: 'yes' });
         }
@@ -164,7 +168,7 @@ var ErrorPage = /** @class */ (function () {
     };
     ErrorPage = ErrorPage_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-error',template:/*ion-inline-start:"C:\Users\gsaid\Desktop\myfuelportal\src\pages\error\error.html"*/'<ion-header>\n\n    <ion-navbar color="appColor" text-center>\n      <ion-title>MyFuelPortal</ion-title>\n    </ion-navbar>\n  \n  </ion-header>\n  \n  \n  <ion-content padding>\n      <ion-grid>\n          <ion-row>\n            <ion-col text-center>\n                <h1>Network Connection Error</h1>\n                <p>The internet connection appears to be offline at the moment. Please check your network connection and try again once the connection has been restored.</p>\n            </ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col text-center>\n                <button ion-button color="danger" (click)="reloadPage()" icon-first><ion-icon name="refresh"></ion-icon> Try Again</button>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n  </ion-content>\n  <ion-footer text-center>\n  \n      <a ion-button text-center clear (click)="reloadPage(\'policy\')" color="primary">Privacy Policy</a>\n      <p><strong>Copyright © 2018 MyFuelPortal.</strong> All rights reserved.</p>\n    \n  </ion-footer>\n  \n\n\n\n'/*ion-inline-end:"C:\Users\gsaid\Desktop\myfuelportal\src\pages\error\error.html"*/,
+            selector: 'page-error',template:/*ion-inline-start:"/Users/duth/Desktop/Ionic Apps/mydemoapp/src/pages/error/error.html"*/'<ion-header>\n\n    <ion-navbar color="appColor" text-center>\n      <ion-title>MyFuelPortal</ion-title>\n    </ion-navbar>\n  \n  </ion-header>\n  \n  \n  <ion-content padding>\n      <ion-grid>\n          <ion-row>\n            <ion-col text-center>\n                <h1>Network Connection Error</h1>\n                <p>The internet connection appears to be offline at the moment. Please check your network connection and try again once the connection has been restored.</p>\n            </ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col text-center>\n                <button ion-button color="danger" (click)="reloadPage()" icon-first><ion-icon name="refresh"></ion-icon> Try Again</button>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n  </ion-content>\n  <ion-footer text-center>\n  \n      <a ion-button text-center clear (click)="reloadPage(\'policy\')" color="primary">Privacy Policy</a>\n      <p><strong>Copyright © 2018 MyFuelPortal.</strong> All rights reserved.</p>\n    \n  </ion-footer>\n  \n\n\n\n'/*ion-inline-end:"/Users/duth/Desktop/Ionic Apps/mydemoapp/src/pages/error/error.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__["a" /* InAppBrowser */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_network__["a" /* Network */]])
     ], ErrorPage);
@@ -301,7 +305,7 @@ var MyApp = /** @class */ (function () {
         });
     }
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\gsaid\Desktop\myfuelportal\src\app\app.html"*/'<div *ngIf="showSplash" class="splash">\n    <div class="spinner">\n        <div class="cube1"></div>\n        <div class="cube2"></div>\n    </div>\n</div>\n\n\n\n<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"C:\Users\gsaid\Desktop\myfuelportal\src\app\app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/duth/Desktop/Ionic Apps/mydemoapp/src/app/app.html"*/'<div *ngIf="showSplash" class="splash">\n    <div class="spinner">\n        <div class="cube1"></div>\n        <div class="cube2"></div>\n    </div>\n</div>\n\n\n\n<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/Users/duth/Desktop/Ionic Apps/mydemoapp/src/app/app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);

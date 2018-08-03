@@ -9,14 +9,14 @@ import { Network } from '@ionic-native/network';
   templateUrl: 'error.html',
 })
 export class ErrorPage {
-
+  
   webref: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private iab: InAppBrowser, private network: Network) {
   }
 
   reloadPage(urlstring?: string){
-    let url = this.navParams.data;
+    let url = "https://demo.myfuelportal.com/";
     if(urlstring == 'policy'){
       this.webref = this.iab.create('https://demo.myfuelportal.com/Account/Privacy','_blank',{location:'no',hidden:'yes',toolbar:'no',hidespinner:'yes'});
     }

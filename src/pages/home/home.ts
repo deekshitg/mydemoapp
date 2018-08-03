@@ -13,6 +13,7 @@ export class HomePage{
   
   showLoad: boolean = true;
   webref: any;
+  url: any="https://demo.myfuelportal.com";
 
   constructor(public navCtrl: NavController, private iab: InAppBrowser, private network: Network, private plt:Platform) {
     
@@ -28,6 +29,9 @@ export class HomePage{
       this.webref = this.iab.create('https://demo.myfuelportal.com/Account/Privacy','_blank',{location:'no',hidden:'yes',toolbar:'no',hidespinner:'yes'});
     }
 
+    this.webref.on('loadstart').subscribe((event) => {
+      this.url = event.url;
+    });
     this.webref.on('loadstop').subscribe( () => {
       this.showLoad = true;
       this.webref.show();
@@ -38,7 +42,7 @@ export class HomePage{
         if(this.network.type === 'none' ){
           this.webref.close();
           alert("Looks like you are not online");
-          this.navCtrl.setRoot(ErrorPage,event.url);
+          this.navCtrl.setRoot(ErrorPage,this.url);
         }
       });
     }
